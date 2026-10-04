@@ -1,0 +1,26 @@
+[package]
+name = "streak-setup"
+version = "1.0.0"
+edition = "2021"
+description = "Installer for Streak"
+
+[[bin]]
+name = "StreakSetup"
+path = "src/main.rs"
+
+[build-dependencies]
+embed-resource = "2.4"
+
+[dependencies]
+eframe = { version = "0.29", default-features = false, features = ["glow", "default_fonts"] }
+
+[dependencies.windows]
+version = "0.58"
+features = [
+    "Win32_Foundation",
+    "Win32_System_Com",
+    "Win32_System_Registry",
+    "Win32_System_SystemInformation",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+]
