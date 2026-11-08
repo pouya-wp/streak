@@ -20,8 +20,11 @@ jobs:
         with:
           targets: x86_64-pc-windows-msvc
 
-      - name: Cargo Build Release
-        run: cargo build --release --workspace
+      - name: Cargo Build Streak Release
+        run: cargo build --release --bin streak
+
+      - name: Cargo Build Installer
+        run: cargo build --release -p streak-setup
 
       - name: Package Artifacts
         shell: pwsh
@@ -29,6 +32,9 @@ jobs:
           mkdir dist
           if (Test-Path target/release/streak.exe) {
             Copy-Item target/release/streak.exe dist/
+          }
+          if (Test-Path target/release/streak-setup.exe) {
+            Copy-Item target/release/streak-setup.exe dist/
           }
           if (Test-Path target/release/installer.exe) {
             Copy-Item target/release/installer.exe dist/
