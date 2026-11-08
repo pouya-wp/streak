@@ -5,6 +5,7 @@
 ### System-Wide Real-Time GPU Cursor Effects for Windows
 
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D6?style=flat-square&logo=windows)](https://microsoft.com)
+[![CI](https://github.com/pouya-wp/streak/actions/workflows/ci.yml/badge.svg)](https://github.com/pouya-wp/streak/actions/workflows/ci.yml)
 [![Rust](https://img.shields.io/badge/Rust-DirectX%2011-DEA584?style=flat-square&logo=rust)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-Pouya%20Sadeghpour-181717?style=flat-square&logo=github)](https://github.com/pouya-wp)
