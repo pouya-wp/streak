@@ -1,0 +1,44 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    name: Build Windows x64 Binary
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Cargo Build Release
+        run: cargo build --release --workspace
+
+      - name: Package Artifacts
+        shell: pwsh
+        run: |
+          mkdir dist
+          if (Test-Path target/release/streak.exe) {
+            Copy-Item target/release/streak.exe dist/
+          }
+          if (Test-Path target/release/installer.exe) {
+            Copy-Item target/release/installer.exe dist/
+          }
+          Compress-Archive -Path dist/* -DestinationPath streak-windows-x64.zip
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: streak-windows-x64.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true
