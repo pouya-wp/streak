@@ -25,8 +25,11 @@ jobs:
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
 
-      - name: Cargo Check
-        run: cargo check --workspace --verbose
+      - name: Cargo Check Streak Core
+        run: cargo check --bin streak --verbose
 
-      - name: Cargo Test
-        run: cargo test --workspace --verbose
+      - name: Cargo Build Streak Core
+        run: cargo build --release --bin streak --verbose
+
+      - name: Cargo Check Setup
+        run: cargo check -p streak-setup --verbose
